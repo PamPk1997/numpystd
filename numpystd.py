@@ -329,6 +329,248 @@ print(size2)
 
 
 
+# ADVANCED NUMPY
+
+#advanced indexing
+
+a=np.arange(24).reshape(6,4)
+
+#fancy indexing
+
+row1 = a[[0,2,3]]
+column1 = a[:,[0,2]]
+
+print(f"{row1}\n\n{column1}")
+
+
+#boolean indexing
+b=np.random.randint(1,100,24).reshape(6,4)
+print(b)
+c = [b >50]
+
+#find numbers greater than 50
+d=b[b > 50 ]
+print(f"{c}\n\n{d}")
+
+#find out even numbers
+e=b[b%2 == 0]
+print(e)
+
+#find all numbers are greater than 50 and are even
+f= b[(b > 50) & (b % 2 == 0)]
+print(f)
+
+#find all the number not divisible by 7
+
+g = b[~(b % 7 ==0)]
+print(g)
+
+
+
+
+#Broadcasting
+
+a=np.arange(12).reshape(4,3)
+b=np.arange(3)
+print(a+b)
+#braodcasting is done because we add 1 into the head of lower array which is 1D and then extend it.
+
+c=np.arange(3).reshape(1,3)
+d=np.arange(4).reshape(4,1)
+print(c+d)
+#braodcasting is done because there is ones to extend
+
+
+e=np.arange(12).reshape(3,4)
+f=np.arange(12).reshape(4,3)
+print(e+f)
+#braodcasting is not done because there is ones to extend
+
+
+#Mathematical operation with numpy
+
+#sigmoid
+
+def sigmoid(array):
+    return 1 /(1 + np.exp(-array))
+
+a=np.arange(10)
+result = sigmoid(a)
+print(result)
+
+
+# mean square error
+
+actualval = np.random.randint(1,100,25)
+predictedval = np.random.randint(1,100,25)
+
+def mse(actual,predicted):
+    return np.mean((actual - predicted)**2)
+
+result1 = mse(actualval,predictedval)
+print(result1)
+
+
+#binary cross entropy
+actual1 = np.array([0, 1, 1, 0, 1])
+predicted1 = np.array([0.1, 0.9, 0.8, 0.2, 0.7])
+
+def bce(actual,predicted):
+    return -np.mean(actual1 * np.log(predicted1) + (1-actual1) * np.log(1 - predicted1))
+
+result2 = bce(actual1,predicted1)
+print(result2)
+
+
+# Working with missing values
+
+# nan values
+
+a= np.array([1,2,3,4,np.nan,6])
+# here we boolean indexing to find missing values
+result1 = a[np.isnan(a)]
+result2 = a[~(np.isnan(a))]
+print(result1)
+print(result2)
+
+
+# Plotting Graphs
+
+import matplotlib.pyplot as plt
+
+#graph of y=x
+
+x= np.linspace(-10,10,100)
+y = x
+result = plt.plot(x,y)
+
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Graph of y=x")
+plt.show()
+
+
+# Graph of y = x**2
+
+x=np.linspace(-10,10,10)
+y = x**2
+
+result= plt.plot(x,y)
+
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Graph of y=x")
+plt.show()
+
+# Graph of y = sin(x)
+
+x=np.linspace(-10,10,100)
+y = np.sin(x)
+
+result = plt.plot(x,y)
+
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Graph of y = sin(x)")
+plt.show()
+
+
+# Graph of y= xlog(x)
+
+x=np.linspace(-10,10,100)
+y = x * np.log(x)
+
+result =  plt.plot(x,y)
+
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Graph of y = xlog(x)")
+plt.show()
+
+
+# Grap of simoid
+x=np.linspace(-10,10,100)
+y = 1/(1 + np.exp(-(x)))
+
+result =  plt.plot(x,y)
+
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Graph of y = xlog(x)")
+plt.show()
+
+
+######################### Numpy Functions ##################################
+
+# sort
+
+a= np.random.randint(1,50,15)
+b= np.random.randint(1,50,24).reshape(6,4)
+
+result1 = np.sort(a)   #sort in asc
+result2 = np.sort(b) # sort the 2d in row wise
+
+result3 = np.sort(a)[::-1]   # sort in desc
+result4 = np.sort(b ,axis = 0) # sort the 2d  in column wise
+
+# print (f"{result1}\n\n{result2}\n\n{result3}\n\n{result4}")
+
+
+#append
+
+result5 = np.append(a,55) # add the given value in array at last
+result6 = np.append(b,np.ones((b.shape[0],1,)),axis = 1) # add ann another column with 1 values
+# print(f"{result5}\n\n{result6}")
+
+
+# concatenate
+
+c= np.arange(6).reshape(2,3)
+d= np.arange(6,12).reshape(2,3)
+
+result7 = np.concatenate((c,d),axis = 0)  # rows wise
+result8 = np.concatenate((c,d),axis = 1)  # column wise
+
+# print(f"{result7}\n\n{result8}")
+
+
+#unique
+
+e= np.array([1,1,2,2,3,4,5,6,6,7])
+result9 = np.unique(e) # get only unique values
+# print(result9)
+
+
+#expand_dims
+#with help of expand_dims we can expand the dimension of an array
+
+f= np.random.randint(1,50,15)
+result10 = np.expand_dims(f, axis =0)
+result11 = np.expand_dims(f, axis =1)
+
+# print(f"{result10}\n\n{result11}")
+
+
+#where
+
+g= np.random.randint(1,100,15)
+result12 = np.where(g>50)   # gives the index position where values is grater than 50
+result13 = np.where(g>50 ,1 ,g)   # replace with 1 where values are greator than 50
+
+# print(f"{result12}\n\n{result13}")
+
+
+h = np.random.randint(1,50,15)
+i = np.random.randint(1,50,24).reshape(6,4)
+
+result14 = np.argmax(h)
+result15 = np.argmax(i , axis =0)
+result16 = np.argmax(i , axis =1)
+
+result17 = np.argmin(i , axis =0)
+result18 = np.argmin(i , axis =1)
+
+
 
 
 
