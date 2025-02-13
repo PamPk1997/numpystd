@@ -353,8 +353,7 @@ d=b[b > 50 ]
 print(f"{c}\n\n{d}")
 
 #find out even numbers
-e=b[b%2 == 0]
-print(e)
+e1=b[b%2 == 0]
 
 #find all numbers are greater than 50 and are even
 f= b[(b > 50) & (b % 2 == 0)]
@@ -380,10 +379,9 @@ d=np.arange(4).reshape(4,1)
 print(c+d)
 #braodcasting is done because there is ones to extend
 
-
-e=np.arange(12).reshape(3,4)
+e2=np.arange(12).reshape(3,4)
 f=np.arange(12).reshape(4,3)
-print(e+f)
+print(e1+f)
 #braodcasting is not done because there is ones to extend
 
 
@@ -455,8 +453,7 @@ plt.show()
 x=np.linspace(-10,10,10)
 y = x**2
 
-result= plt.plot(x,y)
-
+plt.plot(x,y)
 plt.xlabel("X-axis")
 plt.ylabel("Y-axis")
 plt.title("Graph of y=x")
@@ -467,8 +464,7 @@ plt.show()
 x=np.linspace(-10,10,100)
 y = np.sin(x)
 
-result = plt.plot(x,y)
-
+plt.plot(x,y)
 plt.xlabel("X-axis")
 plt.ylabel("Y-axis")
 plt.title("Graph of y = sin(x)")
@@ -480,7 +476,7 @@ plt.show()
 x=np.linspace(-10,10,100)
 y = x * np.log(x)
 
-result =  plt.plot(x,y)
+plt.plot(x,y)
 
 plt.xlabel("X-axis")
 plt.ylabel("Y-axis")
@@ -488,12 +484,11 @@ plt.title("Graph of y = xlog(x)")
 plt.show()
 
 
-# Grap of simoid
+# Grap of sigmoid
 x=np.linspace(-10,10,100)
-y = 1/(1 + np.exp(-(x)))
+y = 1/(1 + np.exp(-x))
 
-result =  plt.plot(x,y)
-
+plt.plot(x,y)
 plt.xlabel("X-axis")
 plt.ylabel("Y-axis")
 plt.title("Graph of y = xlog(x)")
@@ -507,20 +502,19 @@ plt.show()
 a= np.random.randint(1,50,15)
 b= np.random.randint(1,50,24).reshape(6,4)
 
-result1 = np.sort(a)   #sort in asc
-result2 = np.sort(b) # sort the 2d in row wise
+result1 = np.sort(a)
+result2 = np.sort(b)
 
-result3 = np.sort(a)[::-1]   # sort in desc
-result4 = np.sort(b ,axis = 0) # sort the 2d  in column wise
-
-# print (f"{result1}\n\n{result2}\n\n{result3}\n\n{result4}")
+result3 = np.sort(a)[::-1]
+result4 = np.sort(b ,axis = 0)
+print (f"{result1}\n\n{result2}\n\n{result3}\n\n{result4}")
 
 
 #append
 
-result5 = np.append(a,55) # add the given value in array at last
-result6 = np.append(b,np.ones((b.shape[0],1,)),axis = 1) # add ann another column with 1 values
-# print(f"{result5}\n\n{result6}")
+result5 = np.append(a,55)
+result6 = np.append(b,np.ones((b.shape[0],1,)),axis = 1)
+print(f"{result5}\n\n{result6}")
 
 
 # concatenate
@@ -528,36 +522,35 @@ result6 = np.append(b,np.ones((b.shape[0],1,)),axis = 1) # add ann another colum
 c= np.arange(6).reshape(2,3)
 d= np.arange(6,12).reshape(2,3)
 
-result7 = np.concatenate((c,d),axis = 0)  # rows wise
-result8 = np.concatenate((c,d),axis = 1)  # column wise
+result7 = np.concatenate((c,d),axis = 0)
+result8 = np.concatenate((c,d),axis = 1)
 
-# print(f"{result7}\n\n{result8}")
+print(f"{result7}\n\n{result8}")
 
 
 #unique
 
-e= np.array([1,1,2,2,3,4,5,6,6,7])
-result9 = np.unique(e) # get only unique values
-# print(result9)
+e3= np.array([1,1,2,2,3,4,5,6,6,7])
+result9 = np.unique(e3) # get only unique values
+print(result9)
 
 
 #expand_dims
-#with help of expand_dims we can expand the dimension of an array
 
 f= np.random.randint(1,50,15)
 result10 = np.expand_dims(f, axis =0)
 result11 = np.expand_dims(f, axis =1)
 
-# print(f"{result10}\n\n{result11}")
+print(f"{result10}\n\n{result11}")
 
 
 #where
 
 g= np.random.randint(1,100,15)
-result12 = np.where(g>50)   # gives the index position where values is grater than 50
-result13 = np.where(g>50 ,1 ,g)   # replace with 1 where values are greator than 50
+result12 = np.where(g>50)
+result13 = np.where(g>50 ,1 ,g)
 
-# print(f"{result12}\n\n{result13}")
+print(f"{result12}\n\n{result13}")
 
 
 h = np.random.randint(1,50,15)
@@ -570,7 +563,91 @@ result16 = np.argmax(i , axis =1)
 result17 = np.argmin(i , axis =0)
 result18 = np.argmin(i , axis =1)
 
+print(f"{h}\n\n{i}\n\n{result14}\n\n{result15}\n\n{result16}\n\n{result17}\n\n{result18}")
 
+
+#cumsum
+
+j = np.random.randint(1,100,15)
+i = np.random.randint(1,50,24).reshape(6,4)
+result19 = np.cumsum(j)
+result20 = np.cumsum(i)
+result21 = np.cumsum(i , axis= 0)
+result22 = np.cumsum(i, axis = 1)
+result23 = np.cumprod(i)
+
+print(f"{j}\n\n{i}\n\n{result19}\n\n{result20}\n\n{result21}\n\n{result22}\n\n{result23}")
+
+
+#percentile
+
+k = np.random.randint(1,100,15)
+i = np.random.randint(1,50,24).reshape(6,4)
+result24= np.percentile(k,100)
+result25 = np.percentile(k, 50)
+print(result24,result25)
+
+
+#histogram
+
+l = np.random.randint(1,100,25)
+result26 = np.histogram(l,bins= [0,10,20,30,40,50,60,70,80,90,100])
+print(result26)
+
+#flip
+
+m = np.array([10,20,30,40,50,60,70,90,100])
+n = np.random.randint(1,50,24).reshape(6,4)
+
+result27 = np.flip(m)
+result28 = np.flip(n)
+print(f"{result27}\n\n{result28}")
+
+#put
+
+o = np.array([10,20,30,40,50,60,70,90,100])
+np.put(o, [1, 4], [80, 500])
+
+
+# delete
+
+p = np.array([10,20,30,40,50,60,70,90,100])
+result30 = np.delete(p,[0,1,3])
+print(result30)
+print(p)
+
+
+################# Set functions #################
+
+
+m = np.array([1,2,3,4,5])
+n = np.array([3,4,5,6,7])
+
+# union1d
+
+result1= np.union1d(m,n)
+print(result1)
+
+#intersect1d
+result2 = np.intersect1d(m,n)
+print(result2)
+
+#setdiff1d
+result3 = np.setdiff1d(m,n)
+print(result3)
+
+# setxor1d
+result4 = np.setxor1d(m,n)
+print(result4)
+
+# isin
+result5 = np.isin(m,1)
+print(result5)
+
+#clip
+
+arr = np.random.randint(1,100,25)
+result6 = (np.clip(arr, 25 ,75))
 
 
 
